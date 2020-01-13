@@ -12,8 +12,7 @@ class Journey extends Model
         return $this->belongsTo('App\Route');
     }
 
-    public function tickets(){
-        // hasOne for now, I am not sure if we want to change this to hasMany
+    public function ticket(){
         return $this->hasOne('App\Ticket');
     }
 }
