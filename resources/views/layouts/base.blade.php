@@ -7,8 +7,15 @@
         <title>{{config('app.name', 'Bus Ticketing')}}</title>
     </head>
     <body>
+        @include('inc.navbar')
         <div class="container">
             @yield('container')
         </div>
     </body>
+<!-- Footer -->
+<footer class="page-footer font-small bg-primary p-4">
+    <div class="footer-copyright text-center">© 2020 Copyright:
+      {{config('app.name', 'Bus Ticketing')}}. All rights reserved
+    </div>  
+  </footer>
 </html>
