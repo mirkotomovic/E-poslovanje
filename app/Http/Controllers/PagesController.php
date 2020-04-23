@@ -9,5 +9,8 @@ class PagesController extends Controller
     public function index(){
         return view("search");
     }
-    //
+    
+    public function about(){
+        return view("about");
+    }
 }

@@ -13,3 +13,4 @@
 
 Route::get('/', 'PagesController@index');
 Route::get('/search', 'SearchController@search');
+Route::get('/about', 'PagesController@about');
