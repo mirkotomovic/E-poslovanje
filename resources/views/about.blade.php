@@ -1,13 +1,10 @@
 @extends('layouts.base')
 
 @section('container')
-    <h1>This is the about page</h1>
-    {{-- This is only a test, to prove that the theme works--}}
-    <button class="btn btn-primary" type="button">Primary</button>
-    <button class="btn btn-secondary" type="button">Secondary</button>
-    <button class="btn btn-success" type="button">Success</button>
-    <button class="btn btn-info" type="button">Info</button>
-    <button class="btn btn-warning" type="button">Warning</button>
-    <button class="btn btn-danger" type="button">Danger</button>
-    <button class="btn btn-link" type="button">Link</button>    
+    <div class="jumbotron color-primary">
+        <h1 class="display-3 text-center">{{config('app.name','Bus Ticketing')}}</h1>
+        <p class="lead text-center">Secure your travel expenses from the comfort of your home</p>
+        <hr class="my-4">
+        <p class="text-center">@lang('messages.main-text')</p>
+    </div>    
 @endsection
