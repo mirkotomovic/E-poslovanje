@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <img class="logo-size" src="{{ asset('img/logo.svg') }}" alt="logo" height="50">
     <a class="navbar-brand" href="/"> {{config('app.name', 'Bus Ticketing')}}</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
