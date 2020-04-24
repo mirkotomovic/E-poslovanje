@@ -14,3 +14,10 @@
 Route::get('/', 'PagesController@index');
 Route::get('/search', 'SearchController@search');
 Route::get('/about', 'PagesController@about');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/about', 'PagesController@about');
+
+Route::resource('users', 'UserController');
