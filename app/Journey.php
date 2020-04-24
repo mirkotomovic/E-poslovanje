@@ -13,6 +13,6 @@ class Journey extends Model
     }
 
     public function ticket(){
-        return $this->hasOne('App\Ticket');
+        return $this->hasMany('App\Ticket');
     }
 }
