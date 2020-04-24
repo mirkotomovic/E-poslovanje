@@ -14,6 +14,7 @@
 Route::get('/', 'PagesController@index');
 Route::get('/search', 'SearchController@search');
 Route::get('/about', 'PagesController@about');
+Route::get('/contact','PagesController@contacts');
 
 Auth::routes();
 
