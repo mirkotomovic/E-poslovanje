@@ -16,9 +16,6 @@
       <li class="nav-item">
         <a class="nav-link" href="\contact">Contact</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="\login">Login</a>
-      </li>
     </ul>
     
      <!-- Right Side Of Navbar -->
