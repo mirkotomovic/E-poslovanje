@@ -11,14 +11,12 @@
 |
 */
 
-Route::get('/', 'PagesController@index');
-Route::get('/search', 'SearchController@search');
-Route::get('/about', 'PagesController@about');
-Route::get('/contact','PagesController@contacts');
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/searchForm', 'PagesController@index')->name('searchForm');
+Route::get('/search', 'SearchController@search')->name('search');
+Route::get('/about', 'PagesController@about')->name('about');
+Route::get('/contact','PagesController@contacts')->name('contacts');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/about', 'PagesController@about');
 
 Route::resource('users', 'UserController');
