@@ -18,7 +18,14 @@ class RemakeTicketsTable extends Migration
         Schema::create('tickets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('journey_id');
+            $table->foreign('journey_id')
+                ->references('id')->on('journeys')
+                ->onDelete('cascade');
+
             $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
+                ->references('id')->on('users')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }

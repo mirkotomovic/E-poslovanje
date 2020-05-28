@@ -1,5 +1,5 @@
-@extends('layouts.base')
-@section('container')    
+@extends('layouts.app')
+@section('content')    
 <div class="container">
 	<div class="row pt-3">
         <div class="col-3"></div>

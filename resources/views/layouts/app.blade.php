@@ -17,19 +17,22 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
+    <!-- Styles -->
+    <link href="{{ asset('bootstrap.css') }}" rel="stylesheet">
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-        <!-- Styles -->
-        <link href="{{ asset('bootstrap.css') }}" rel="stylesheet">
 
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="wrapper">
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-4">
             <div class="container">
-                <img class="logo-size" src="{{ asset('img/logo.svg') }}" alt="logo" height="50">
-                <a class="navbar-brand" href="{{ route('home') }}"> {{config('app.name', 'Bus Ticketing')}}</a>
+                <a class="navbar-brand" href="{{ route('home') }}">
+                    <img class="logo-size" src="{{ asset('img/logo.svg') }}" alt="logo" height="50">
+                    {{config('app.name', 'Bus Ticketing')}}
+                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01"
                     aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -89,10 +92,23 @@
             </div>
         </nav>
 
+
+
         <main class="py-4">
-            @yield('content')
+            @yield('top-body-elements')
+            <div class="content">
+                @yield('content')
+            </div>
         </main>
+
+
     </div>
+    <!-- Footer -->
+    <footer class="footer font-small bg-primary">
+        <div class="footer-copyright text-center">© 2020 Copyright:
+            {{config('app.name', 'Bus Ticketing')}}. All rights reserved
+        </div>
+    </footer>
 </body>
 
 </html>
