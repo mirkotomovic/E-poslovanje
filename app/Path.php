@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Route extends Model
+class Path extends Model
 {
     //
     public function places()
@@ -12,7 +12,8 @@ class Route extends Model
         return $this->belongsToMany(Place::class)->withPivot(['ordinal']);
     }
 
-    public function journeys(){
+    public function journeys()
+    {
         return $this->hasMany('App\Journey');
     }
 }

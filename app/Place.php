@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     //
-    public function routes()
+    public function paths()
     {
-        return $this->belongsToMany(Route::class)->withPivot(['ordinal']);
+        return $this->belongsToMany(Path::class)->withPivot(['ordinal']);
     }
 }

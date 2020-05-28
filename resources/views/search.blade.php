@@ -25,7 +25,7 @@
     @if (isset($journeys) && count($journeys) > 0)
         @foreach ($journeys as $journey)
             <hr>
-            <b>{{$journey->route->name}}</b><br>
+            <b>{{$journey->path->name}}</b><br>
             <i>{{$journey->depart_time}}</i>
         @endforeach
     @endif

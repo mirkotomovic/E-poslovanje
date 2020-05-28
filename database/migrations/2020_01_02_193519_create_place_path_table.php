@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePlaceRouteTable extends Migration
+class CreatePlacePathTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,19 @@ class CreatePlaceRouteTable extends Migration
      */
     public function up()
     {
-        Schema::create('place_route', function (Blueprint $table) {
+        Schema::create('place_path', function (Blueprint $table) {
             $table->bigIncrements('id');
+            
             $table->unsignedBigInteger('place_id');
-            $table->unsignedBigInteger('route_id');
+            $table->foreign('place_id')
+                ->references('id')->on('places')
+                ->onDelete('cascade');
+                
+            $table->unsignedBigInteger('path_id');
+            $table->foreign('path_id')
+                ->references('id')->on('paths')
+                ->onDelete('cascade');
+
             $table->unsignedBigInteger('ordinal');
             $table->timestamps();
         });
@@ -29,6 +38,6 @@ class CreatePlaceRouteTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('place_route');
+        Schema::dropIfExists('place_path');
     }
 }
