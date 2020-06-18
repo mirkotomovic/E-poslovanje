@@ -13,7 +13,7 @@ class CreatePlacePathTable extends Migration
      */
     public function up()
     {
-        Schema::create('place_path', function (Blueprint $table) {
+        Schema::create('path_place', function (Blueprint $table) {
             $table->bigIncrements('id');
             
             $table->unsignedBigInteger('place_id');

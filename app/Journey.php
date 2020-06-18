@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Journey extends Model
 {
     //
-    public function route()
+    public function path()
     {
         return $this->belongsTo('App\Path');
     }
