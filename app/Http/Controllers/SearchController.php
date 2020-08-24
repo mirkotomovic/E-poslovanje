@@ -11,12 +11,12 @@ use Carbon\Carbon;
 class SearchController extends Controller
 {
     public function search(Request $request) {
-        $placeNames = Place::pluck('name');
+        $placeNames = Place::pluck('name', 'id');
         if (!isset($request->placeFrom)) {
             return view('search')->with('placeNames', $placeNames);
         }
-        $placeFrom = Place::where("name", $placeNames[$request->placeFrom])->first();
-        $placeTo = Place::where("name", $placeNames[$request->placeTo])->first();
+        $placeFrom = Place::find($request->placeFrom);
+        $placeTo = Place::find($request->placeTo);
         $date = new Carbon($request->date);
         
         // return path::first()->places()->get();
