@@ -16,6 +16,10 @@ Route::get('/searchForm', 'PagesController@index')->name('searchForm');
 Route::get('/search', 'SearchController@search')->name('search');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/contact','PagesController@contacts')->name('contacts');
+Route::get('/admin/placeCreate', 'PlaceController@create')->name('places');
+Route::post('/admin/placeStore', 'PlaceController@store')->name('places');
+Route::get('/admin/pathCreate', 'PathController@create')->name('paths');
+Route::post('/admin/pathStore', 'PathController@store')->name('paths');
 
 Auth::routes();
 

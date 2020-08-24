@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Path extends Model
 {
+    protected $fillable = ['name'];
     //
     public function places()
     {

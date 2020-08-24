@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Path;
+use App\Place;
 use Illuminate\Http\Request;
 
 class PathController extends Controller
@@ -24,7 +25,8 @@ class PathController extends Controller
      */
     public function create()
     {
-        //
+        $placeNames = Place::pluck('name', 'id');
+        return view("paths.create")->with('placeNames', $placeNames);
     }
 
     /**
@@ -35,7 +37,21 @@ class PathController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pathPlaces = [];
+        $pathName = "";
+        foreach($request->get('placeFrom') as &$placeId) {
+            $place = Place::find($placeId);
+            array_push($pathPlaces, $place);
+            $pathName = $pathName == "" ? $place->name : $pathName." - ".$place->name;
+        }
+        $newPath = Path::create(["name" => $pathName]);
+        $count = 0;
+        foreach($pathPlaces as &$place) {
+            echo $place->name;
+            $newPath->places()->attach([$place->id => ['ordinal' => $count]]);
+            $count++;
+        }
+        return back();
     }
 
     /**

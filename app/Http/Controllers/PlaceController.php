@@ -24,7 +24,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        //
+        return view("places.create");
     }
 
     /**
@@ -35,7 +35,11 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|unique:places',
+        ]);
+        Place::create($request->all());
+        return back();
     }
 
     /**
