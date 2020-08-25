@@ -1,33 +1,34 @@
 @extends('layouts.app')
 
 @section('content')
-<body>
-    <h1 class="text-center"> Add a new route </h1>
-    <div class="mx-auto w-25">
-        <div class="table-responsive">
-            {!! Form::open(['action' => 'PathController@store', 'method'=>'POST']) !!}
-            <table class="table table-bordered table-striped" id="path_table">
-                <thead>
-                    <tr>
-                        <th width="70%">Stop name</th>
-                        <th width="30%"></th>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-                <tfoot>
-                    <tr>
-                        <td><button type="button" name="add" id="add" class="btn btn-success">Add stop</button></td>
-                        <td>
-                            @csrf
-                            {{Form::submit('Add path', ['class'=>'btn btn-primary'])}}
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
-            {!! Form::close() !!}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="table-responsive">
+                {!! Form::open(['action' => 'PathController@store', 'method'=>'POST']) !!}
+                <table class="table table-bordered table-striped" id="path_table">
+                    <thead>
+                        <tr>
+                            <th width="70%">Stop name</th>
+                            <th width="30%"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <td><button type="button" name="add" id="add" class="btn btn-success">Add stop</button></td>
+                            <td>
+                                @csrf
+                                {{Form::submit('Add path', ['class'=>'btn btn-primary'])}}
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                {!! Form::close() !!}
+            </div>
         </div>
     </div>
-</body>
+</div>
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -40,7 +41,7 @@ $(document).ready(function(){
     function dynamic_field(number)
     {
         html = '<tr>';
-        html += '<td>{{Form::select('placeFrom[]', $placeNames)}}</td>';
+        html += '<td>{{Form::select('placeFrom[]', $placeNames, "", ['class' => 'form-control'])}}</td>';
         html += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';
         $('tbody').append(html);
     }
