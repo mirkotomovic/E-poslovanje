@@ -12,6 +12,10 @@ class Journey extends Model
         return $this->belongsTo('App\Path');
     }
 
+    public function company() {
+        return $this->belongsTo('App\Company');
+    }
+
     public function ticket(){
         return $this->hasMany('App\Ticket');
     }
