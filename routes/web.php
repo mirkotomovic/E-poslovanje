@@ -16,11 +16,22 @@ Route::get('/searchForm', 'PagesController@index')->name('searchForm');
 Route::get('/search', 'SearchController@search')->name('search');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/contact','PagesController@contacts')->name('contacts');
-Route::get('/admin/placeCreate', 'PlaceController@create')->name('places');
-Route::post('/admin/placeStore', 'PlaceController@store')->name('places');
-Route::get('/admin/pathCreate', 'PathController@create')->name('paths');
-Route::post('/admin/pathStore', 'PathController@store')->name('paths');
 
 Auth::routes();
 
 Route::resource('users', 'UserController');
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::middleware('can:isAdmin')->group(function () {
+        Route::get('/admin/placeCreate', 'PlaceController@create')->name('places.create');
+        Route::post('/admin/placeStore', 'PlaceController@store')->name('places.store');
+        Route::get('/admin/pathCreate', 'PathController@create')->name('paths.create');
+        Route::post('/admin/pathStore', 'PathController@store')->name('paths.store');
+    });
+    Route::middleware('can:isSalesman')->group(function () {
+        
+    });
+    Route::middleware('can:isCustomer')->group(function () {
+        
+    });
+});
