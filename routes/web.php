@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/admin/placeStore', 'PlaceController@store')->name('places.store');
         Route::get('/admin/pathCreate', 'PathController@create')->name('paths.create');
         Route::post('/admin/pathStore', 'PathController@store')->name('paths.store');
+        Route::get('/admin/companyCreate', 'CompanyController@create')->name('companies.create');
+        Route::post('/admin/companyStore', 'CompanyController@store')->name('companies.store');
     });
     Route::middleware('can:isSalesman')->group(function () {
         
