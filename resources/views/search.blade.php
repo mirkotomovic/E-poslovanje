@@ -1,49 +1,68 @@
-<!DOCTYPE html>
+@extends('layouts.app')
 
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
 
+@section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Search</div>
+                <div class="card-body bg-ligh">
+                    @if (session('status'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('status') }}
+                    </div>
+                    @endif
+                    {!! Form::open(['action' => 'SearchController@search', 'method'=>'GET']) !!}
+                    <div class="form-group">
+                        {{Form::label('placeFrom', 'From:', ['class' => 'col-form-label'])}}
+                        <div class="col-10">
+                            {{Form::select('placeFrom', $placeNames, "", ['class' => 'form-control'])}}
+                        </div>
+                    </div>
 
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <div class="form-group">
+                        {{Form::label('placeTo', 'To:', ['class' => 'col-form-label'])}}
+                        <div class="col-10">
+                            {{Form::select('placeTo', $placeNames, "", ['class' => 'form-control'])}}
+                        </div>
+                    </div>
 
-        <title>Laravel</title>
-    </head>
-    <body>
-        {!! Form::open(['action' => 'SearchController@search', 'method'=>'GET']) !!}
-        <div class="form-group">
-            {{Form::label('placeFrom', 'Od')}}
-            {{Form::select('placeFrom', $placeNames)}}
+                    <div class="form-group">
+                        {{Form::label('date', 'Date:', ['class' => 'col-form-label'])}}
+                        <div class="col-10">
+                            {{Form::date('date', \Carbon\Carbon::now()->format('Y-m-d'), ['class' => 'form-control'])}}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12 text-right">
+                            @csrf
+                            {{Form::submit('Search', ['class'=>'btn btn-primary btn-lg'])}}
+                        </div>
+                    </div>
+                    {!! Form::close() !!}
+                </div>
+            </div>
         </div>
-
-        <div class="form-group">
-            {{Form::label('placeTo', 'Do')}}
-            {{Form::select('placeTo', $placeNames)}}
-        </div>
-
-        <div class="form-group">
-            {{Form::label('date', 'Datum')}}
-            {{Form::text('date', \Carbon\Carbon::now()->format('d-m-Y'), array('id' => 'datepicker'))}}
-        </div>
-
-        {{Form::submit('Search', ['class'=>'btn btn-primary'])}}
-        {!! Form::close() !!}
-
-    </body>
+    </div>
+    <br>
     @if (isset($journeys) && count($journeys) > 0)
-        @foreach ($journeys as $journey)
-            <hr>
-            <b>{{$journey->path->name}}</b><br>
-            <i>{{$journey->depart_time}}</i>
-        @endforeach
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+                    @foreach ($journeys as $journey)
+                    <div class="card">
+                        <div class="card-header">{{$journey->path->name}}</div>
+                        <div class="card-body bg-ligh">
+                            <i>{{$journey->depart_time}}</i>
+                        </div>
+                    </div>
+                    <br>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
     @endif
-</html>
-
-<script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
-  <script>
-  $(function() {
-    $( "#datepicker" ).datepicker({dateFormat: "dd-mm-yy"});
-  });
-  </script>
+</div>
+@endsection
