@@ -24,7 +24,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        //
+        return view("companies.create");
     }
 
     /**
@@ -35,8 +35,11 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'name' => 'required|unique:companies',
+        ]);
+        Company::create($request->all());
+        return back();    }
 
     /**
      * Display the specified resource.

@@ -20,6 +20,8 @@ Route::get('/admin/placeCreate', 'PlaceController@create')->name('places');
 Route::post('/admin/placeStore', 'PlaceController@store')->name('places');
 Route::get('/admin/pathCreate', 'PathController@create')->name('paths');
 Route::post('/admin/pathStore', 'PathController@store')->name('paths');
+Route::get('/admin/companyCreate', 'CompanyController@create')->name('companies');
+Route::post('/admin/companyStore', 'CompanyController@store')->name('companies');
 
 Auth::routes();
 
