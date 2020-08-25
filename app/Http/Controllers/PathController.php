@@ -25,7 +25,7 @@ class PathController extends Controller
      */
     public function create()
     {
-        $placeNames = Place::pluck('name', 'id');
+        $placeNames = Place::orderBy('name')->pluck('name', 'id');
         return view("paths.create")->with('placeNames', $placeNames);
     }
 

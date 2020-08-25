@@ -11,7 +11,7 @@ use Carbon\Carbon;
 class SearchController extends Controller
 {
     public function search(Request $request) {
-        $placeNames = Place::pluck('name', 'id');
+        $placeNames = Place::orderBy('name')->pluck('name', 'id');
         if (!isset($request->placeFrom)) {
             return view('search')->with('placeNames', $placeNames);
         }
