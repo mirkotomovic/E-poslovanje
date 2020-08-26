@@ -17,6 +17,8 @@ Route::get('/search', 'SearchController@search')->name('search');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/contact','PagesController@contacts')->name('contacts');
 
+Route::post('/createTicket', 'TicketController@create');
+
 Auth::routes();
 
 Route::resource('users', 'UserController');

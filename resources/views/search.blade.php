@@ -53,8 +53,15 @@
                     @foreach ($journeys as $journey)
                     <div class="card">
                         <div class="card-header">{{$journey->path->name}} <span class="float-right badge badge-primary text-white">{{$journey->depart_time}}</span></div>
+                    <h1></h1>
                         <div class="card-body bg-ligh">
-                            <a class="float-center btn btn-primary" role="button" href="{{ url("#")}}">Buy tickets</a>
+                            {!! Form::open(['action' => 'TicketController@create', 'method' => 'POST']) !!}
+                            <div class="form-group">
+                                {!! Form::label('ticketNumber', 'Number of tickets:', ['class' => 'col-form-label']) !!}
+                                {!! Form::selectRange('ticketNumber', 1, 5) !!}
+                                {!! Form::submit("Buy", ["class" => 'btn btn-primary btn-lg float-right']) !!}
+                            </div>
+                            {!! Form::close() !!}
                         </div>
                     </div>
                     <br>
