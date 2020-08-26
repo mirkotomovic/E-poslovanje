@@ -52,9 +52,9 @@
         <div class="col-md-8">
                     @foreach ($journeys as $journey)
                     <div class="card">
-                        <div class="card-header">{{$journey->path->name}}</div>
+                        <div class="card-header">{{$journey->path->name}} <span class="float-right badge badge-primary text-white">{{$journey->depart_time}}</span></div>
                         <div class="card-body bg-ligh">
-                            <i>{{$journey->depart_time}}</i>
+                            <a class="float-center btn btn-primary" role="button" href="{{ url("#")}}">Buy tickets</a>
                         </div>
                     </div>
                     <br>
