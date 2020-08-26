@@ -52,8 +52,7 @@
         <div class="col-md-8">
                     @foreach ($journeys as $journey)
                     <div class="card">
-                        <div class="card-header">{{$journey->path->name}} <span class="float-right badge badge-primary text-white">{{$journey->depart_time}}</span></div>
-                    <h1></h1>
+                        <div class="card-header"><span class="text-primary font-weight-bold">{{$journey->path->name}}</span><span class="float-right badge badge-primary text-white">{{$journey->depart_time}}</span></div>
                         <div class="card-body bg-ligh">
                             {!! Form::open(['action' => 'TicketController@create', 'method' => 'POST']) !!}
                             <div class="form-group">
