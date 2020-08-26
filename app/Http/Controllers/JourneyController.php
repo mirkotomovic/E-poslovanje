@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Journey;
+use App\Path;
+use App\Company;
 use Illuminate\Http\Request;
 
 class JourneyController extends Controller
@@ -24,7 +26,9 @@ class JourneyController extends Controller
      */
     public function create()
     {
-        //
+        $pathNames = Path::orderBy('name')->pluck('name', 'id');
+        $companyNames = Company::orderBy('name')->pluck('name', 'id');
+        return view("journeys.create")->with('pathNames', $pathNames)->with('companyNames', $companyNames);
     }
 
     /**
@@ -35,7 +39,15 @@ class JourneyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request['depart_time'] = $request['date'].' '.$request['time'];
+        $validatedData = $request->validate([
+            'path_id' => 'required',
+            'company_id' => 'required',
+            'depart_time' => 'required|date',
+            'tickets_available' => 'required',
+        ]);
+        Journey::create($request->all());
+        return back();
     }
 
     /**

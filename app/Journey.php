@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Journey extends Model
 {
+    protected $fillable = ['path_id', 'company_id', 'depart_time', 'tickets_available'];
     //
     public function path()
     {

@@ -31,6 +31,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('companies.create') }}">{{ __('Create Company') }}</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('journeys.create') }}">{{ __('Create Journey') }}</a>
+                </li>
             </ul>
             @elsecan('isCustomer')
             <ul class="navbar-nav mr-auto">
