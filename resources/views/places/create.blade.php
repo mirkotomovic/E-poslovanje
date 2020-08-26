@@ -20,7 +20,7 @@
                             {{Form::submit('Add place', ['class'=>'btn btn-primary'])}}
                         </div>
                     </div>
-                    @csrf
+                    {!! Form::close() !!}
                 </div>
             </div>
         </div>
