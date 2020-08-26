@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('js')
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -31,7 +35,8 @@
 </div>
 @endsection
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+@section('scripts')
 <script>
 $(document).ready(function(){
     var count = 1;
@@ -58,3 +63,4 @@ $(document).ready(function(){
     });
 });
 </script>
+@endsection

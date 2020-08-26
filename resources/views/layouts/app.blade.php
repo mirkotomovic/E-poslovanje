@@ -23,12 +23,12 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+    @yield('js')
+
 </head>
 
 <body>
     <div id="app" class="wrapper">
-
-
 
         @include('inc.navbar')
         <main class="py-4">
@@ -40,12 +40,14 @@
 
 
     </div>
+
     <!-- Footer -->
     <footer class="footer font-small bg-primary">
         <div class="footer-copyright text-center">© 2020 Copyright:
             {{config('app.name', 'Bus Ticketing')}}. All rights reserved
         </div>
     </footer>
-</body>
+    @yield('scripts')
 
+</body>
 </html>
