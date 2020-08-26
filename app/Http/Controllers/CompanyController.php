@@ -36,7 +36,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:companies',
+            'name' => 'required|max:50|unique:App\Company',
         ]);
         Company::create($request->all());
         return back();    }

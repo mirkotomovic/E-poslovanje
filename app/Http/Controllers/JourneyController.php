@@ -41,10 +41,12 @@ class JourneyController extends Controller
     {
         $request['depart_time'] = $request['date'].' '.$request['time'];
         $validatedData = $request->validate([
-            'path_id' => 'required',
-            'company_id' => 'required',
-            'depart_time' => 'required|date',
-            'tickets_available' => 'required',
+            'path_id' => 'required|exists:App\Path,id',
+            'company_id' => 'required|exists:App\Company,id',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i:s',
+            'depart_time' => 'after:now',
+            'tickets_available' => 'required|numeric|integer|min:1',
         ]);
         Journey::create($request->all());
         return back();

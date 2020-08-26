@@ -36,7 +36,7 @@ class PlaceController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => 'required|unique:places',
+            'name' => 'required|max:50|unique:App\Place',
         ]);
         Place::create($request->all());
         return back();
