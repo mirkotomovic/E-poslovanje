@@ -62,7 +62,7 @@ $(document).ready(function(){
     function dynamic_field(number)
     {
         html = '<tr>';
-        html += '<td>{{Form::select('placeFrom[]', $placeNames, "", ['class' => 'form-control'])}}</td>';
+        html += '<td>{{Form::select('stops[]', $placeNames, "", ['class' => 'form-control'])}}</td>';
         html += '<td><button type="button" name="remove" id="" class="btn btn-danger remove">Remove</button></td></tr>';
         $('tbody').append(html);
     }

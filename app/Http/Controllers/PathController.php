@@ -37,9 +37,13 @@ class PathController extends Controller
      */
     public function store(Request $request)
     {
+        $validatedData = $request->validate([
+            'stops' => 'required|array|min:2',
+            'stops.*' => 'required|exists:App\Place,id|distinct',
+        ]);
         $pathPlaces = [];
         $pathName = "";
-        foreach($request->get('placeFrom') as &$placeId) {
+        foreach($request->get('stops') as &$placeId) {
             $place = Place::find($placeId);
             array_push($pathPlaces, $place);
             $pathName = $pathName == "" ? $place->name : $pathName." - ".$place->name;
