@@ -14,7 +14,8 @@ class PlaceController extends Controller
      */
     public function index()
     {
-        //
+        $places = Place::orderBy('name')->get();
+        return view('places.index', compact('places'));
     }
 
     /**
@@ -84,6 +85,8 @@ class PlaceController extends Controller
      */
     public function destroy(Place $place)
     {
-        //
+        $name = $place->name;
+        $place->delete();
+        return back()->with('success', "Place '" . $name . "' deleted successfully.");
     }
 }

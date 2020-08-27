@@ -17,11 +17,17 @@ Route::get('/search', 'SearchController@search')->name('search');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/contact','PagesController@contacts')->name('contacts');
 
-Route::post('/createTicket', 'TicketController@create');
+Route::post('/createTicket', 'TicketController@create')->name('tickets.create');
 
 Auth::routes();
 
 Route::resource('users', 'UserController');
+
+Route::get('/admin/places', 'PlaceController@index')->name('places.index');
+Route::get('/admin/places/{place}/edit', 'PlaceController@edit')->name('places.edit');
+Route::patch('/admin/places/{place}', 'PlaceController@update')->name('places.update');
+Route::delete('/admin/places/{place}', 'PlaceController@destroy')->name('places.destroy');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('can:isAdmin')->group(function () {
