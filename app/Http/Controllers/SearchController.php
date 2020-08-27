@@ -26,7 +26,9 @@ class SearchController extends Controller
         $path = $path->get();
         $journeys = new Collection();
         foreach($path as &$r){
-            if ($r->places()->find($placeFrom->id)->pivot->ordinal < $r->places()->find($placeTo->id)->pivot->ordinal){
+            $pathPlaceFrom = $r->places()->find($placeFrom->id);
+            $pathPlaceTo = $r->places()->find($placeTo->id);
+            if ($pathPlaceFrom && $pathPlaceTo && $pathPlaceFrom->pivot->ordinal <= $pathPlaceTo->pivot->ordinal){
                 $path_journeys = $r->journeys;
                 $path_journeys = $path_journeys->filter(function ($item) use ($date) {
                     return (data_get($item, 'depart_time') > $date->startOfDay()) && (data_get($item, 'depart_time') < $date->endOfDay());
