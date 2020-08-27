@@ -8,6 +8,22 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
             <div class="table-responsive">
                 {!! Form::open(['action' => 'PathController@store', 'method'=>'POST']) !!}
                 <table class="table table-bordered table-striped" id="path_table">

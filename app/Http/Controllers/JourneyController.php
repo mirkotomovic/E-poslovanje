@@ -48,8 +48,8 @@ class JourneyController extends Controller
             'depart_time' => 'after:now',
             'tickets_available' => 'required|numeric|integer|min:1',
         ]);
-        Journey::create($request->all());
-        return back();
+        $newJourney = Journey::create($request->all());
+        return back()->with('success', 'Journey \''.$newJourney->path->name.'\' at '.$newJourney->depart_time.' added successfully.');
     }
 
     /**

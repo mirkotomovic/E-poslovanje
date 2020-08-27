@@ -38,9 +38,9 @@ class CompanyController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:50|unique:App\Company',
         ]);
-        Company::create($request->all());
-        return back();    }
-
+        $newCompany = Company::create($request->all());
+        return back()->with('success', 'Company \''.$newCompany->name.'\' added successfully.');
+    }
     /**
      * Display the specified resource.
      *

@@ -13,6 +13,13 @@
                     </ul>
                 </div>
             @endif
+            @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header">Add company</div>
                 <div class="card-body bg-ligh">

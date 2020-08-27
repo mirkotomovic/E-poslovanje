@@ -51,7 +51,7 @@ class PathController extends Controller
             $newPath->places()->attach([$place->id => ['ordinal' => $count]]);
             $count++;
         }
-        return back();
+        return back()->with('success', 'Path \''.$newPath->name.'\' added successfully.');
     }
 
     /**

@@ -38,8 +38,8 @@ class PlaceController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:50|unique:App\Place',
         ]);
-        Place::create($request->all());
-        return back();
+        $newPlace = Place::create($request->all());
+        return back()->with('success', 'Place \''.$newPlace->name.'\' added successfully.');
     }
 
     /**
