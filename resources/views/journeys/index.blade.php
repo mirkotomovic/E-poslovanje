@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h2 class="text-center mb-2">List of places</h2>
+    <h2 class="text-center mb-2">List of journeys</h2>
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if (\Session::has('success'))
@@ -16,24 +16,28 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" width=80%>Name</th>
+                        <th scope="col" width=30%>Path</th>
+                        <th scope="col" width=20%>Depart time</th>
+                        <th scope="col" width=30%>Depart time</th>
                         <th scope="col" width=10%></th>
                         <th scope="col" width=10%></th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($places as $place)
+                    @foreach ($journeys as $journey)
                     <tr>
-                        <th scope="row">{{ $place->name }}</th>
+                        <th scope="row">{{ $journey->path->name }}</th>
+                        <th scope="row">{{ $journey->depart_time}}</th>
+                        <th scope="row">{{ $journey->company->name}}</th>
                         <td class="text-center">
-                            {!! Form::open(['action' => ['PlaceController@destroy', 'place' => $place], 'method'=>'POST']) !!}
+                            {!! Form::open(['action' => ['JourneyController@destroy', 'journey' => $journey], 'method'=>'POST']) !!}
                                 @method('DELETE')
                                 @csrf
                                 {{Form::submit('Delete', ['class'=>'btn btn-danger btn-sm'])}}
                             {!! Form::close() !!}
                         </td>
                         <td class="text-center">
-                            <a href="{{ route('places.edit', ['place' => $place]) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ route('journeys.edit', ['journey' => $journey]) }}" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
                     @endforeach

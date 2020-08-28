@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <h2 class="text-center mb-2">List of places</h2>
+    <h2 class="text-center mb-2">List of companies</h2>
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if (\Session::has('success'))
@@ -22,18 +22,18 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($places as $place)
+                    @foreach ($companies as $company)
                     <tr>
-                        <th scope="row">{{ $place->name }}</th>
+                        <th scope="row">{{ $company->name }}</th>
                         <td class="text-center">
-                            {!! Form::open(['action' => ['PlaceController@destroy', 'place' => $place], 'method'=>'POST']) !!}
+                            {!! Form::open(['action' => ['CompanyController@destroy', 'company' => $company], 'method'=>'POST']) !!}
                                 @method('DELETE')
                                 @csrf
                                 {{Form::submit('Delete', ['class'=>'btn btn-danger btn-sm'])}}
                             {!! Form::close() !!}
                         </td>
                         <td class="text-center">
-                            <a href="{{ route('places.edit', ['place' => $place]) }}" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="{{ route('companies.edit', ['company' => $company]) }}" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
                     @endforeach

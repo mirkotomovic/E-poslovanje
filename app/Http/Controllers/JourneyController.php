@@ -16,7 +16,8 @@ class JourneyController extends Controller
      */
     public function index()
     {
-        //
+        $journeys = Journey::orderBy('depart_time')->get();
+        return view('journeys.index', compact('journeys'));
     }
 
     /**
@@ -94,6 +95,8 @@ class JourneyController extends Controller
      */
     public function destroy(Journey $journey)
     {
-        //
+        $name = $journey->path->name.' at '.$journey->depart_time;
+        $journey->delete();
+        return back()->with('success', "Journey '" . $name . "' deleted successfully.");
     }
 }

@@ -15,7 +15,8 @@ class PathController extends Controller
      */
     public function index()
     {
-        //
+        $paths = Path::orderBy('name')->get();
+        return view('paths.index', compact('paths'));
     }
 
     /**
@@ -100,6 +101,8 @@ class PathController extends Controller
      */
     public function destroy(Path $path)
     {
-        //
+        $name = $path->name;
+        $path->delete();
+        return back()->with('success', "Path '" . $name . "' deleted successfully.");
     }
 }

@@ -14,7 +14,8 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        //
+        $companies = Company::orderBy('name')->get();
+        return view('companies.index', compact('companies'));
     }
 
     /**
@@ -83,6 +84,8 @@ class CompanyController extends Controller
      */
     public function destroy(Company $company)
     {
-        //
+        $name = $company->name;
+        $company->delete();
+        return back()->with('success', "Company '" . $name . "' deleted successfully.");
     }
 }
