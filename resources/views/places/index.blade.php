@@ -28,17 +28,16 @@
                     <tr>
                         <th scope="row">{{ $place->name }}</th>
                         <td class="text-center">
-                            <form action="{{ route('places.destroy', ['place' => $place]) }}" method="POST">
+                            {!! Form::open(['action' => ['PlaceController@destroy', 'place' => $place], 'method'=>'POST']) !!}
                                 @method('DELETE')
                                 @csrf
-                                <button class="btn btn-danger btn-sm" type="submit">Delete</button>
-                            </form>
+                                {{Form::submit('Delete', ['class'=>'btn btn-danger btn-sm'])}}
+                            {!! Form::close() !!}
                         </td>
                         <td class="text-center">
                             <a href="{{ route('places.edit', ['place' => $place]) }}" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
-
                     @endforeach
                 </tbody>
             </table>
