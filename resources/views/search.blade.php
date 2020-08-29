@@ -13,6 +13,13 @@
                 </ul>
             </div>
             @endif
+            @if (\Session::has('error'))
+            <div class="alert alert-danger">
+                <ul>
+                    <li>{!! \Session::get('error') !!}</li>
+                </ul>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">Search</div>
                 <div class="card-body bg-ligh">

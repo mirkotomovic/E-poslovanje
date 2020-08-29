@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Ticket;
+use App\Journey;
 use Illuminate\Http\Request;
 
 class TicketController extends Controller
@@ -36,10 +37,19 @@ class TicketController extends Controller
     public function store(Request $request)
     {
         $numberOfTickets = $request['ticketNumber'];
+        $journeyId = $request['journeyId'];
+        $journey = Journey::where("id", "=", $journeyId )->firstOrFail();  
 
+        $availableTickets = $journey->tickets_available;
+        if($numberOfTickets > $availableTickets){
+            return back()->with("error", "There are not as many tickets available as you request!");
+        }
+        
         for ($i=0; $i < $numberOfTickets; $i++) { 
             $storedTicket = Ticket::create(["journey_id" => $request['journeyId'], "user_id" => auth()->user()->id]);            
         }
+        $journey->tickets_available = $availableTickets - $numberOfTickets;
+        $journey->save();
         return back()->with('success', $numberOfTickets . ' tlicket(s) successfully bought!');
     }
 
