@@ -24,7 +24,7 @@ class TicketController extends Controller
      */
     public function create()
     {
-        return back();
+
     }
 
     /**
@@ -35,7 +35,12 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $numberOfTickets = $request['ticketNumber'];
+
+        for ($i=0; $i < $numberOfTickets; $i++) { 
+            $storedTicket = Ticket::create(["journey_id" => $request['journeyId'], "user_id" => auth()->user()->id]);            
+        }
+        return back()->with('success', $numberOfTickets . ' ticket(s) successfully bought!');
     }
 
     /**

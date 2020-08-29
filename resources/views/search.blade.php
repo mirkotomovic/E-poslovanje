@@ -6,6 +6,13 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            @if (\Session::has('success'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('success') !!}</li>
+                </ul>
+            </div>
+            @endif
             <div class="card">
                 <div class="card-header">Search</div>
                 <div class="card-body bg-ligh">
@@ -54,11 +61,16 @@
                     <div class="card">
                         <div class="card-header"><span class="text-primary font-weight-bold">{{$journey->path->name}}</span><span class="float-right badge badge-primary text-white">{{$journey->depart_time}}</span></div>
                         <div class="card-body bg-ligh">
-                            {!! Form::open(['action' => 'TicketController@create', 'method' => 'POST']) !!}
+                            <span class="font-weight-bold">{{$journey->company->name}}</span> 
+                            {!! Form::open(['action' => 'TicketController@store', 'method' => 'POST']) !!}
                             <div class="form-group">
                                 {!! Form::label('ticketNumber', 'Number of tickets:', ['class' => 'col-form-label']) !!}
                                 {!! Form::selectRange('ticketNumber', 1, 5) !!}
-                                {!! Form::submit("Buy", ["class" => 'btn btn-primary btn-lg float-right']) !!}
+                                @if (auth()->user()->role != 'admin')
+                                    {!! Form::submit("Buy", ["class" => 'btn btn-primary btn-lg float-right']) !!}    
+                                    <input type="hidden" value="{{$journey->id}}" name="journeyId">
+                                    <input type="hidden" value="{{$journey->company->id}}" name="companyId">
+                                @endif    
                             </div>
                             {!! Form::close() !!}
                         </div>
