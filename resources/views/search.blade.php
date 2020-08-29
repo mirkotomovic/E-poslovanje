@@ -68,8 +68,8 @@
                     <div class="card">
                         <div class="card-header"><span class="text-primary font-weight-bold">{{$journey->path->name}}</span><span class="float-right badge badge-primary text-white">{{$journey->depart_time}}</span></div>
                         <div class="card-body bg-ligh">
-                            <span class="font-weight-bold">{{$journey->company->name}}</span>
-                            <div class="pb-3 font-weight-bold">Number of seats available: <span class="badge badge-danger">{{$journey->tickets_available}}</span></div>
+                            <span class="font-weight-bold">Company: </span><h5 class="d-inline"><span class="badge badge-danger font-weight-bold">{{$journey->company->name}}</span></h5>
+                            <div class="pt-3 pb-3 font-weight-bold">Number of seats available: <h5 class="d-inline"><span class="badge badge-danger">{{$journey->tickets_available}}</span></h5></div>
                             {!! Form::open(['action' => 'TicketController@store', 'method' => 'POST']) !!}
                             <div class="form-group">
                                 {!! Form::label('ticketNumber', 'Number of tickets you want to buy:', ['class' => 'col-form-label']) !!}
