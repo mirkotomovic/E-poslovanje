@@ -72,7 +72,7 @@
                             <div class="pb-3 font-weight-bold">Number of seats available: <span class="badge badge-danger">{{$journey->tickets_available}}</span></div>
                             {!! Form::open(['action' => 'TicketController@store', 'method' => 'POST']) !!}
                             <div class="form-group">
-                                {!! Form::label('ticketNumber', 'Number of tickets:', ['class' => 'col-form-label']) !!}
+                                {!! Form::label('ticketNumber', 'Number of tickets you want to buy:', ['class' => 'col-form-label']) !!}
                                 {!! Form::selectRange('ticketNumber', 1, 5) !!}
                                 @if (auth()->user()->role != 'admin')
                                     {!! Form::submit("Buy", ["class" => 'btn btn-primary btn-lg float-right']) !!}    
