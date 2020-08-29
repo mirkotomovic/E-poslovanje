@@ -40,7 +40,7 @@ class TicketController extends Controller
         for ($i=0; $i < $numberOfTickets; $i++) { 
             $storedTicket = Ticket::create(["journey_id" => $request['journeyId'], "user_id" => auth()->user()->id]);            
         }
-        return back()->with('success', $numberOfTickets . ' ticket(s) successfully bought!');
+        return back()->with('success', $numberOfTickets . ' tlicket(s) successfully bought!');
     }
 
     /**
