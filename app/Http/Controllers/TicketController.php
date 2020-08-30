@@ -50,7 +50,7 @@ class TicketController extends Controller
         }
         $journey->tickets_available = $availableTickets - $numberOfTickets;
         $journey->save();
-        return back()->with('success', $numberOfTickets . ' tlicket(s) successfully bought!');
+        return back()->with('success', $numberOfTickets . ' ticket(s) successfully bought!');
     }
 
     /**
