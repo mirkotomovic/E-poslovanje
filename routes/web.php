@@ -12,18 +12,12 @@
 */
 
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('/searchForm', 'PagesController@index')->name('searchForm');
 Route::get('/search', 'SearchController@search')->name('search');
 Route::get('/about', 'PagesController@about')->name('about');
-Route::get('/contact','PagesController@contacts')->name('contacts');
-
-Route::post('/tickets/store', 'TicketController@store')->name('tickets.store');
 
 Auth::routes();
 
 Route::resource('users', 'UserController');
-
-
 
 Route::group(['middleware' => 'auth'], function () {
     Route::middleware('can:isAdmin')->group(function () {
@@ -54,9 +48,9 @@ Route::group(['middleware' => 'auth'], function () {
 
     });
     Route::middleware('can:isSalesman')->group(function () {
-        
+        Route::post('/tickets/store', 'TicketController@store')->name('tickets.store');
     });
     Route::middleware('can:isCustomer')->group(function () {
-        
+        Route::post('/tickets/store', 'TicketController@store')->name('tickets.store');
     });
 });
