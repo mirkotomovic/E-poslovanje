@@ -16,10 +16,9 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" width=30%>Path</th>
+                        <th scope="col" width=40%>Path</th>
                         <th scope="col" width=20%>Depart time</th>
                         <th scope="col" width=30%>Depart time</th>
-                        <th scope="col" width=10%></th>
                         <th scope="col" width=10%></th>
                     </tr>
                 </thead>
@@ -35,9 +34,6 @@
                                 @csrf
                                 {{Form::submit('Delete', ['class'=>'btn btn-danger btn-sm'])}}
                             {!! Form::close() !!}
-                        </td>
-                        <td class="text-center">
-                            <a href="{{ route('journeys.edit', ['journey' => $journey]) }}" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
                     @endforeach

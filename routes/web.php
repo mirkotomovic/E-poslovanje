@@ -17,7 +17,7 @@ Route::get('/search', 'SearchController@search')->name('search');
 Route::get('/about', 'PagesController@about')->name('about');
 Route::get('/contact','PagesController@contacts')->name('contacts');
 
-Route::post('/storeTicket', 'TicketController@store')->name('tickets.store');
+Route::post('/tickets/store', 'TicketController@store')->name('tickets.store');
 
 Auth::routes();
 
@@ -37,8 +37,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin/paths', 'PathController@index')->name('paths.index');
         Route::get('/admin/paths/create', 'PathController@create')->name('paths.create');
         Route::post('/admin/paths/store', 'PathController@store')->name('paths.store');
-        Route::get('/admin/paths/{path}/edit', 'PathController@edit')->name('paths.edit');
-        Route::patch('/admin/paths/{path}', 'PathController@update')->name('paths.update');
         Route::delete('/admin/paths/{path}', 'PathController@destroy')->name('paths.destroy');
 
         Route::get('/admin/companies', 'CompanyController@index')->name('companies.index');
@@ -51,8 +49,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/admin/journeys', 'JourneyController@index')->name('journeys.index');
         Route::get('/admin/journeys/create', 'JourneyController@create')->name('journeys.create');
         Route::post('/admin/journeys/store', 'JourneyController@store')->name('journeys.store');
-        Route::get('/admin/journeys/{journey}/edit', 'JourneyController@edit')->name('journeys.edit');
-        Route::patch('/admin/journeys/{journey}', 'JourneyController@update')->name('journeys.update');
         Route::delete('/admin/journeys/{journey}', 'JourneyController@destroy')->name('journeys.destroy');
 
 

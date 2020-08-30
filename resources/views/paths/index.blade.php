@@ -16,8 +16,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="col" width=80%>Name</th>
-                        <th scope="col" width=10%></th>
+                        <th scope="col" width=90%>Name</th>
                         <th scope="col" width=10%></th>
                     </tr>
                 </thead>
@@ -31,9 +30,6 @@
                                 @csrf
                                 {{Form::submit('Delete', ['class'=>'btn btn-danger btn-sm'])}}
                             {!! Form::close() !!}
-                        </td>
-                        <td class="text-center">
-                            <a href="{{ route('paths.edit', ['path' => $path]) }}" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
                     @endforeach

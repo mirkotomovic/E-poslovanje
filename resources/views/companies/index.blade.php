@@ -26,14 +26,14 @@
                     <tr>
                         <th scope="row">{{ $company->name }}</th>
                         <td class="text-center">
+                            <a href="{{ route('companies.edit', ['company' => $company]) }}" class="btn btn-primary btn-sm">Edit</a>
+                        </td>
+                        <td class="text-center">
                             {!! Form::open(['action' => ['CompanyController@destroy', 'company' => $company], 'method'=>'POST']) !!}
                                 @method('DELETE')
                                 @csrf
                                 {{Form::submit('Delete', ['class'=>'btn btn-danger btn-sm'])}}
                             {!! Form::close() !!}
-                        </td>
-                        <td class="text-center">
-                            <a href="{{ route('companies.edit', ['company' => $company]) }}" class="btn btn-primary btn-sm">Edit</a>
                         </td>
                     </tr>
                     @endforeach

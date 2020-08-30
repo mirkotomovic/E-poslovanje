@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Company;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class CompanyController extends Controller
 {
@@ -61,7 +62,7 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        //
+        return view('companies.edit', compact('company'));
     }
 
     /**
@@ -73,7 +74,13 @@ class CompanyController extends Controller
      */
     public function update(Request $request, Company $company)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:50', Rule::unique('companies')->ignore($company)],
+        ]);
+        $company->update($request->all());
+
+        $name = $company->name;
+        return back()->with('success', "Company '" . $name . "' edited successfully.");
     }
 
     /**

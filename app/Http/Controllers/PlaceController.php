@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Place;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PlaceController extends Controller
 {
@@ -62,7 +63,7 @@ class PlaceController extends Controller
      */
     public function edit(Place $place)
     {
-        //
+        return view('places.edit', compact('place'));
     }
 
     /**
@@ -74,9 +75,14 @@ class PlaceController extends Controller
      */
     public function update(Request $request, Place $place)
     {
-        //
-    }
+        $validatedData = $request->validate([
+            'name' => ['required', 'max:50', Rule::unique('places')->ignore($place)],
+        ]);
+        $place->update($request->all());
 
+        $name = $place->name;
+        return back()->with('success', "Place '" . $name . "' edited successfully.");
+    }
     /**
      * Remove the specified resource from storage.
      *
